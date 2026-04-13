@@ -2,7 +2,6 @@
 
 from collections import deque
 import sys
-sys.setrecursionlimit(10**6)  # Tăng giới hạn đệ quy cho DFS
 
 def bfs(graph, start, visited=None):
     """BFS traversal from start vertex"""
