@@ -1,0 +1,7 @@
+data/roadNet*.txt
+
+__pycache__/
+*.pyc
+
+venv/
+env/
