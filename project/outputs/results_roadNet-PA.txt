@@ -2,35 +2,16 @@
 GRAPH ANALYSIS RESULTS: roadNet-PA
 ============================================================
 
-Number of Vertices:     1,088,092
-Number of Edges:        1,541,898
-Density of the graph: 2.60e-06
-
-----------------------------------------
-EXECUTION TIME
-----------------------------------------
-BFS: 0.6112 seconds
-DFS: 0.5265 seconds
-Counting connected components: 0.7647 seconds
-
+Number of Vertices: 1,088,092
+Number of Edges: 1,541,898
 ----------------------------------------
 CONNECTED COMPONENTS
 ----------------------------------------
 Number of connected components: 206
+----------------------------------------
+EXECUTION TIME
+----------------------------------------
+BFS: 0.6781 seconds
+DFS: 0.9663 seconds
+Counting connected components: 0.7552 seconds
 
-The 10 largest components (number of vertices):
-  #1: 1,088,092 vertices
-  #2: 1,088,090 vertices
-  #3: 1,088,078 vertices
-  #4: 1,088,076 vertices
-  #5: 1,088,074 vertices
-  #6: 1,088,072 vertices
-  #7: 1,088,065 vertices
-  #8: 1,088,063 vertices
-  #9: 1,088,061 vertices
-  #10: 1,088,059 vertices
-
-Size distribution:
-  Smallest: 1,087,562
-  Largest: 1,088,092
-  Medium: 1087826.20

@@ -1,7 +1,6 @@
 """Algorithms of project"""
 
 from collections import deque
-import sys
 
 def bfs(graph, start, visited=None):
     """BFS traversal from start vertex"""
@@ -17,23 +16,6 @@ def bfs(graph, start, visited=None):
             if neighbor not in visited:
                 visited.add(neighbor)
                 queue.append(neighbor)
-    
-    return visited
-
-def dfs(graph, start, visited=None):
-    """Non-recursive DFS traversal (using stack to avoid stack overflow with large graphs)"""
-    if visited is None:
-        visited = set()
-    
-    stack = [start]
-    visited.add(start)
-    
-    while stack:
-        vertex = stack.pop()
-        for neighbor in graph.get_neighbors(vertex):
-            if neighbor not in visited:
-                visited.add(neighbor)
-                stack.append(neighbor)
     
     return visited
 
@@ -57,3 +39,30 @@ def count_connected_components(graph, use_bfs=True):
             components.append(len(component))
     
     return component_count, components
+
+def dfs(graph, start, visited=None, order_list=None, counter=None):
+    """Non-recursive DFS traversal (using stack to avoid stack overflow with large graphs)"""
+    if visited is None:
+        visited = set()
+    if order_list is None:
+        order_list = []
+    if counter is None:
+        counter = [1]
+    
+    stack = [start]
+    
+    while stack:
+        vertex = stack.pop()
+        
+        if vertex not in visited:
+            # Save order when traversal
+            order_list.append((counter[0], vertex))
+            counter[0] += 1
+            visited.add(vertex)
+            
+            # Push neighbors to the stack
+            for neighbor in graph.get_neighbors(vertex):
+                if neighbor not in visited:
+                    stack.append(neighbor)
+    
+    return visited

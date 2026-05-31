@@ -2,35 +2,16 @@
 GRAPH ANALYSIS RESULTS: roadNet-CA
 ============================================================
 
-Number of Vertices:     1,965,206
-Number of Edges:        2,766,607
-Density of the graph: 1.43e-06
-
-----------------------------------------
-EXECUTION TIME
-----------------------------------------
-BFS: 1.3144 seconds
-DFS: 0.8811 seconds
-Counting connected components: 1.5439 seconds
-
+Number of Vertices: 1,965,206
+Number of Edges: 2,766,607
 ----------------------------------------
 CONNECTED COMPONENTS
 ----------------------------------------
 Number of connected components: 2638
+----------------------------------------
+EXECUTION TIME
+----------------------------------------
+BFS: 1.5480 seconds
+DFS: 1.7282 seconds
+Counting connected components: 1.5215 seconds
 
-The 10 largest components (number of vertices):
-  #1: 1,965,206 vertices
-  #2: 1,965,202 vertices
-  #3: 1,965,200 vertices
-  #4: 1,965,198 vertices
-  #5: 1,965,196 vertices
-  #6: 1,965,194 vertices
-  #7: 1,965,192 vertices
-  #8: 1,965,190 vertices
-  #9: 1,965,186 vertices
-  #10: 1,965,184 vertices
-
-Size distribution:
-  Smallest: 1,957,027
-  Largest: 1,965,206
-  Medium: 1961111.20
