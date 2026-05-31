@@ -40,7 +40,7 @@ def measure_algorithm(algorithm_func, graph, *args, **kwargs):
     return result, elapsed # return result means the traversal is done
 
 def save_results(filename, dataset_name, num_vertices, num_edges, 
-                 num_components, component_sizes, bfs_time, dfs_time, comp_time):
+                 num_components, bfs_time, dfs_time, comp_time):
     """Output"""
     with open(filename, 'w', encoding='utf-8') as f:
         f.write("=" * 60 + "\n")
