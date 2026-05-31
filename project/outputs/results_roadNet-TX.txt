@@ -2,35 +2,16 @@
 GRAPH ANALYSIS RESULTS: roadNet-TX
 ============================================================
 
-Number of Vertices:     1,379,917
-Number of Edges:        1,921,660
-Density of the graph: 2.02e-06
-
-----------------------------------------
-EXECUTION TIME
-----------------------------------------
-BFS: 0.7820 seconds
-DFS: 0.5996 seconds
-Counting connected components: 0.9738 seconds
-
+Number of Vertices: 1,379,917
+Number of Edges: 1,921,660
 ----------------------------------------
 CONNECTED COMPONENTS
 ----------------------------------------
 Number of connected components: 424
+----------------------------------------
+EXECUTION TIME
+----------------------------------------
+BFS: 0.9513 seconds
+DFS: 1.0881 seconds
+Counting connected components: 0.9333 seconds
 
-The 10 largest components (number of vertices):
-  #1: 1,379,917 vertices
-  #2: 1,379,915 vertices
-  #3: 1,379,913 vertices
-  #4: 1,379,911 vertices
-  #5: 1,379,909 vertices
-  #6: 1,379,907 vertices
-  #7: 1,379,905 vertices
-  #8: 1,379,902 vertices
-  #9: 1,379,900 vertices
-  #10: 1,379,898 vertices
-
-Size distribution:
-  Smallest: 1,351,137
-  Largest: 1,379,917
-  Medium: 1372912.09

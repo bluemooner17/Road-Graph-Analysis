@@ -1,11 +1,10 @@
 """Functions for reading files, measuring time, and logging"""
 
 import time
-import os
 
 def load_graph_from_file(filepath):
     """Read graph from file"""
-    from graph_struture import Graph
+    from graph_structure import Graph
     
     graph = Graph()
     
@@ -26,10 +25,7 @@ def load_graph_from_file(filepath):
                 v = int(parts[1])
                 graph.add_edge(u, v)
                 line_count += 1
-                
-                # if line_count % 1000000 == 0:
-                #     print(f"  Read {line_count} edges...")
-    
+                    
     elapsed = time.time() - start_time
     print(f"Completed: {graph.num_vertices} vertices, {graph.num_edges} edges")
     print(f"Reading time: {elapsed:.2f} seconds")
@@ -39,9 +35,9 @@ def load_graph_from_file(filepath):
 def measure_algorithm(algorithm_func, graph, *args, **kwargs):
     """Measure the execution time of an algorithm."""
     start = time.time()
-    result = algorithm_func(graph, *args, **kwargs)
+    result = algorithm_func(graph, *args, **kwargs) # run the process of traversal to calculate the period of time
     elapsed = time.time() - start
-    return result, elapsed
+    return result, elapsed # return result means the traversal is done
 
 def save_results(filename, dataset_name, num_vertices, num_edges, 
                  num_components, component_sizes, bfs_time, dfs_time, comp_time):
@@ -53,29 +49,17 @@ def save_results(filename, dataset_name, num_vertices, num_edges,
         
         f.write(f"Number of Vertices: {num_vertices:,}\n")
         f.write(f"Number of Edges: {num_edges:,}\n")
-        f.write(f"Density of the graph: {2*num_edges/(num_vertices*(num_vertices-1)) if num_vertices>1 else 0:.2e}\n\n")
-        
+
+        f.write("-" * 40 + "\n")
+        f.write("CONNECTED COMPONENTS\n")
+        f.write("-" * 40 + "\n")
+        f.write(f"Number of connected components: {num_components}\n")
+                        
         f.write("-" * 40 + "\n")
         f.write("EXECUTION TIME\n")
         f.write("-" * 40 + "\n")
         f.write(f"BFS: {bfs_time:.4f} seconds\n")
         f.write(f"DFS: {dfs_time:.4f} seconds\n")
         f.write(f"Counting connected components: {comp_time:.4f} seconds\n\n")
-        
-        f.write("-" * 40 + "\n")
-        f.write("CONNECTED COMPONENTS\n")
-        f.write("-" * 40 + "\n")
-        f.write(f"Number of connected components: {num_components}\n")
-        
-        # Show 10 largest components
-        component_sizes_sorted = sorted(component_sizes, reverse=True)
-        f.write("\nThe 10 largest components (number of vertices):\n")
-        for i, size in enumerate(component_sizes_sorted[:10], 1):
-            f.write(f"  #{i}: {size:,} vertices\n")
-        
-        f.write("\nSize distribution:\n")
-        f.write(f"  Smallest: {min(component_sizes):,}\n")
-        f.write(f"  Largest: {max(component_sizes):,}\n")
-        f.write(f"  Medium: {sum(component_sizes)/len(component_sizes):.2f}\n")
     
     print(f"Saved in: {filename}")
