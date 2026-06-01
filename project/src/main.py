@@ -43,7 +43,7 @@ def process_files(datasets_to_process, output_dir, summary_file):
         
         for vertex in graph.get_vertices():
             if vertex not in visited_bfs:
-                visited_bfs = bfs(graph, vertex, visited_bfs)
+                (visited_bfs, _) = bfs(graph, vertex, visited_bfs, internal_visited=None)
         bfs_time = time.time() - start_time
         print(f"  Completed BFS in {bfs_time:.4f} seconds")
 
@@ -59,8 +59,8 @@ def process_files(datasets_to_process, output_dir, summary_file):
         for vertex in graph.get_vertices():
             if vertex not in visited_dfs:
                 # DFS for the component that contains the current vertex
-                visited_dfs = dfs(graph, vertex, visited=visited_dfs, 
-                           order_list=order_list, counter=counter)
+                (visited_dfs, _) = dfs(graph, vertex, visited=visited_dfs, 
+                           order_list=order_list, counter=counter, internal_visited=None)
         dfs_time = time.time() - start_time
 
             # Outputs CSV
@@ -70,33 +70,41 @@ def process_files(datasets_to_process, output_dir, summary_file):
             for order, vertex in order_list:
                 csv_f.write(f"{order},{vertex}\n")
             # Outputs by console log
-        print(f"\nDFS Traversal Order (total {len(order_list)} vertices):")
-        print(f"{'Order':<10} {'Node ID'}")
-        for order, vertex in order_list:
-            print(f"{order:<10} {vertex}")
+        # print(f"\nDFS Traversal Order (total {len(order_list)} vertices):")
+        # print(f"{'Order':<10} {'Node ID'}")
+        # for order, vertex in order_list:
+        #     print(f"{order:<10} {vertex}")
         print(f"  Completed DFS in {dfs_time:.4f} seconds")
         
         # 4. Count connected components
+        # BFS
         print("Counting connected components...")
-        (num_components, component_sizes), comp_time = measure_algorithm(
-            count_connected_components, graph, True
-        )
+        start_time = time.time()
+        (num_components, component_sizes)= count_connected_components(graph, True)
+        bfs_comp_time = time.time() - start_time
         print(f"  Number of connected components: {num_components}")
-        print(f"  Completed counting connected components in {comp_time:.4f} seconds")
-        
+        print(f"  Completed counting connected components by BFS in {bfs_comp_time:.4f} seconds")
+
+        #DFS
+        start_time = time.time()
+        (num_components, component_sizes) = count_connected_components(graph, False)
+        dfs_comp_time = time.time() - start_time
+        print(f"  Completed counting connected components by DFS in {dfs_comp_time:.4f}")
+
         # 5. Save results
         output_file = os.path.join(output_dir, f"results_{name}.txt")
         save_results(
             output_file, name,
             graph.num_vertices, graph.num_edges,
-            num_components, component_sizes,
-            bfs_time, dfs_time, comp_time
+            num_components, bfs_time, dfs_time, 
+            max(component_sizes), min(component_sizes),
+            bfs_comp_time, dfs_comp_time
         )
         
         # 6. Save to the summary file
         with open(summary_file, 'a', encoding='utf-8') as sf:
             sf.write(f"{name},{graph.num_vertices},{graph.num_edges},"
-                    f"{num_components},{max(component_sizes)},{bfs_time},{dfs_time},{comp_time}\n")
+                    f"{num_components},{bfs_time},{dfs_time},{max(component_sizes)},{min(component_sizes)},{bfs_comp_time},{dfs_comp_time}\n")
     
     print("\n" + "=" * 70)
     print("DONE.")
@@ -122,7 +130,7 @@ def main():
     # Summary file CSV
     summary_file = os.path.join(output_dir, 'summary.csv')
     with open(summary_file, 'w', encoding='utf-8') as sf:
-        sf.write("Dataset,Vertices,Edges,Components,MaxComponent,BFSTime,DFSTime,CompTime\n")
+        sf.write("Dataset,Vertices,Edges,Components,BFSTime,DFSTime,MaxComponent,MinComponent,BFSCompTime,DFSCompTime\n")
     
     # Input starts
     scope = input("Choosing files to analysis (enter 'a' for all files, 's' for specific ones): ")
