@@ -11,7 +11,10 @@ Number of connected components: 424
 ----------------------------------------
 EXECUTION TIME
 ----------------------------------------
-BFS: 0.9513 seconds
-DFS: 1.0881 seconds
-Counting connected components: 0.9333 seconds
+BFS: 1.1464 seconds
+DFS: 1.3248 seconds
+The max component contains 1351137 vertices
+The max component contains 2 vertices
+Counting connected components by BFS: 1.1516 seconds
+Counting connected components by DFS: 1.3247 seconds
 
